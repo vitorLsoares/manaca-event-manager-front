@@ -1,0 +1,1 @@
+# manaca-event-manager-front
