@@ -1,0 +1,26 @@
+{
+  "api": {
+    "manacaeventmanagerfront": {
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ],
+          "defaultAuthentication": {
+            "apiKeyConfig": {
+              "apiKeyExpirationDate": "2023-10-21T11:31:22.404Z",
+              "apiKeyExpirationDays": 30,
+              "description": "api of event manager manaca"
+            },
+            "authenticationType": "API_KEY"
+          }
+        }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync"
+    }
+  }
+}
