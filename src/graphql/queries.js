@@ -8,6 +8,7 @@ export const getUser = /* GraphQL */ `
       name
       email
       eventPosition
+      inviteCheck
       createdAt
       updatedAt
       __typename
@@ -26,6 +27,7 @@ export const listUsers = /* GraphQL */ `
         name
         email
         eventPosition
+        inviteCheck
         createdAt
         updatedAt
         __typename

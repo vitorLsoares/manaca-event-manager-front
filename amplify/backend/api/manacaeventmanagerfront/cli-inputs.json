@@ -5,15 +5,18 @@
     "serviceName": "AppSync",
     "defaultAuthType": {
       "mode": "API_KEY",
-      "expirationTime": 30,
-      "apiKeyExpirationDate": "2023-10-21T11:31:22.404Z",
-      "keyDescription": "api of event manager manaca"
+      "keyDescription": "api key description",
+      "expirationTime": 30
     },
     "additionalAuthTypes": [
       {
         "mode": "AWS_IAM"
       }
     ],
-    "conflictResolution": {}
+    "conflictResolution": {
+      "defaultResolutionStrategy": {
+        "type": "NONE"
+      }
+    }
   }
 }

@@ -5,36 +5,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { pink, purple } from '@mui/material/colors';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import UserService from '../service/user'
-
-const theme = createTheme({
-    palette: {
-      primary: pink,
-      secondary: purple,
-    },
-    multilineColor:{
-        color:'red'
-    },
-    components: {
-        MuiTextField: {
-          styleOverrides: {
-            root: {
-                color: "rgba(255, 255, 255, 0.87)",
-              '--TextField-brandBorderColor': '#FFF',
-            },
-          },
-        },
-        MuiOutlinedInput: {
-            styleOverrides: {
-              notchedOutline: {
-                borderColor: 'var(--TextField-brandBorderColor)',
-              },
-            },
-        },
-    },
-  });
 
 export default function CreateUserForm({ setParentState }) {
 
@@ -45,6 +16,7 @@ export default function CreateUserForm({ setParentState }) {
         name: `${data.get('firstName')} ${data.get('lastName')}`,
         email: data.get('email'),
         eventPosition: data.get('eventPosition'),
+        inviteCheck: false,
     };
 
     UserService.create(user).then(({ data }) => {
@@ -53,7 +25,6 @@ export default function CreateUserForm({ setParentState }) {
   };
 
   return (
-    <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <Box
           sx={{
@@ -124,6 +95,5 @@ export default function CreateUserForm({ setParentState }) {
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>
   );
 }

@@ -2,5 +2,5 @@
   "AppSyncApiName": "manacaeventmanagerfront",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
-  "AuthModeLastUpdated": "2023-09-20T22:25:35.535Z"
+  "AuthModeLastUpdated": "2023-09-22T22:19:44.627Z"
 }

@@ -15,8 +15,15 @@
   margin: 20px;
   font-size: calc(10px + 2vmin);
   color: white;
-  gap: 20px;
-  align-items: center;
+  justify-content: space-between;
+
+  .home-header, .tab-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
 }
 
 .App-link {
