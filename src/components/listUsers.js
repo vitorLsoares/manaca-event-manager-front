@@ -10,10 +10,12 @@ import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Stack from '@mui/material/Stack';
 
 
 import UserService from '../service/user';
-import { getUser } from '../graphql/queries';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -44,63 +46,77 @@ export default function ListUsers() {
     UserService.update(id, {inviteCheck: true}).then(({ data }) => {
         setUserForCheck(data?.updateUser);
     });
-    };
+  };
 
   useEffect(() => {
     UserService.getAll().then(({ data }) => {
         setUsers(data?.listUsers?.items);
     });
-    }, [userForCheck]);
+  }, [userForCheck]);
   
 
   return (
     <>
         <Box component="form" noValidate onSubmit={getUserForCheck}>
-        <div style={{display: 'flex', gap:'20px'}}>
-
-            <TextField
-                autoComplete="given-name"
-                name="guestId"
-                fullWidth
-                id="guestId"
-                label="Id do Convidado"
-                sx={{ input: { color: 'white' }, width:'400%' }}
-                autoFocus
-            />
-            <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-            >
-                Buscar Convidado
-            </Button>
-                    </div>
-
+          {userForCheck && (
+            <div style={{ marginBottom: '20px' }}>
+              <Stack sx={{ width: '100%' }} spacing={2}>
+                <Alert variant="filled" severity="success">
+                  <AlertTitle>Sucesso</AlertTitle>
+                  Bem Vindo ao Evento Manacá <strong>{userForCheck.name}</strong> &mdash;
+                  Sua Localização é <strong>{userForCheck.eventPosition}</strong>
+                </Alert>
+              </Stack>
+            </div>
+          )}
+          <div style={{display: 'flex', gap:'20px'}}>
+              <TextField
+                  autoComplete="given-name"
+                  name="guestId"
+                  fullWidth
+                  id="guestId"
+                  label="Id do Convidado"
+                  sx={{ input: { color: 'white' }, width:'400%' }}
+                  autoFocus
+              />
+              <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+              >
+                  Buscar Convidado
+              </Button>
+          </div>
         </Box>
         <br />
         <br />
+        <div className="container-list">
+        <h3 style={{color:"white"}}>{`Total de convidados ${users.length}`}</h3>
         <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
             <TableRow>
+                <StyledTableCell>Id</StyledTableCell>
                 <StyledTableCell>Nome</StyledTableCell>
                 <StyledTableCell align="right">Email</StyledTableCell>
                 <StyledTableCell align="right">Posição no Evento</StyledTableCell>
             </TableRow>
             </TableHead>
             <TableBody>
-            {users.map((row) => (
+            {users.map((row, id) => (
                 <StyledTableRow key={row.name} style={{background:row.inviteCheck && '#98FB98'}}>
-                <StyledTableCell component="th" scope="row">
-                    {row.name}
-                </StyledTableCell>
-                <StyledTableCell align="right">{row.email}</StyledTableCell>
-                <StyledTableCell align="right">{row.eventPosition}</StyledTableCell>
+                  <StyledTableCell>{id+1}</StyledTableCell>
+                  <StyledTableCell component="th" scope="row">
+                      {row.name}
+                  </StyledTableCell>
+                  <StyledTableCell align="right">{row.email}</StyledTableCell>
+                  <StyledTableCell align="right">{row.eventPosition}</StyledTableCell>
                 </StyledTableRow>
             ))}
             </TableBody>
         </Table>
         </TableContainer>
+        </div>
     </>
   );
 }
