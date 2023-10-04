@@ -1,4 +1,4 @@
-const { useState, useEffect } = require('react');
+import { useState, useEffect } from 'react';
 
 const useContainerDimensions = myRef => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
@@ -28,4 +28,4 @@ const useContainerDimensions = myRef => {
   return dimensions;
 };
 
-module.exports = useContainerDimensions;
+export default useContainerDimensions;
