@@ -1,9 +1,10 @@
 import './App.css';
-import React, { useEffect } from 'react';
+import React, { useRef, useMemo } from 'react';
 import QrCode from './components/qrCode';
 import SignUp from './components/formUser';
 import CustomTabPanel from './components/CustomTabPanel';
 import ListUsers from './components/listUsers';
+import useContainerDimensions from './hooks/useContainerDimentions';
 
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
@@ -46,6 +47,8 @@ const theme = createTheme({
 });
 
 function App() {
+  const containerRef = useRef();
+  const { width } = useContainerDimensions(containerRef);  
   const [user, setUser] = React.useState(null);
   const[tab, setTab] = React.useState(0);
 
@@ -53,8 +56,10 @@ function App() {
     setTab(newValue);
   };
 
+  const istMobile = useMemo(() => width < 800, [width])
+
   return (
-    <div className="App">
+    <div className="App" ref={containerRef}>
       <header className="App-header">
         <div className='home-header'>
           <img src='https://cdn.awsli.com.br/400x300/2418/2418798/logo/c262f740eb.png' className="App-logo" alt="logo" />
@@ -64,12 +69,12 @@ function App() {
       </header>
         <ThemeProvider theme={theme}>
           <Box 
-            sx={{ flexGrow: 1, display: 'flex', height: 'auto' }}
+            sx={ istMobile ? {} : { flexGrow: 1, display: 'flex', height: 'auto' }}
           >
             <Tabs 
               value={tab} 
               onChange={handleChange} 
-              orientation="vertical"
+              orientation={ istMobile ? "horizontal" : "vertical"}
               variant="scrollable"
               textColor="secondary" 
               indicatorColor="secondary"
@@ -78,13 +83,13 @@ function App() {
               <Tab label="Criar Convidado" {...a11yProps(0)}/>
               <Tab label="Lista de Convidados" {...a11yProps(1)}/>
             </Tabs>
-            <CustomTabPanel value={tab} index={0} style={{ width: '250vh' }} >
-              <div className="main-container">
+            <CustomTabPanel value={tab} index={0} style={istMobile ? {} : { width: '250vh' }} >
+              <div className={istMobile ? "main-container-mobile" : "main-container"}>
                 <SignUp setParentState={setUser} />
                 {user && (<QrCode value={user.id} imageName={user.name} />)}
               </div>
             </CustomTabPanel>
-            <CustomTabPanel value={tab} index={1} style={{ width: '250vh' }} >
+            <CustomTabPanel value={tab} index={1} style={istMobile ? {} : { width: '250vh' }} >
               <ListUsers />
             </CustomTabPanel>
           </Box>

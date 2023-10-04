@@ -1,8 +1,8 @@
-import { useState, useRef} from "react";
+import { useState, useRef, useEffect } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 
 const QrCode = ({value: valueProps, imageName}) => {
-  const [value, setValue] = useState(valueProps);
+  const [value, setValue] = useState(null);
   const qrRef = useRef();
 
   const downloadQRCode = (e) => {
@@ -30,6 +30,9 @@ const QrCode = ({value: valueProps, imageName}) => {
       level={"H"}
     />
   );
+
+  useEffect(() => { setValue(valueProps) }, [valueProps])
+
   return (
     <div className="section container">
         <div className="qrcode__container">

@@ -13,7 +13,7 @@ export default function CreateUserForm({ setParentState }) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const user = {
-        name: `${data.get('firstName')} ${data.get('lastName')}`,
+        name: data.get('name'),
         email: data.get('email'),
         eventPosition: data.get('eventPosition'),
         inviteCheck: false,
@@ -39,35 +39,25 @@ export default function CreateUserForm({ setParentState }) {
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <TextField
                   autoComplete="given-name"
-                  name="firstName"
+                  name="name"
                   required
                   fullWidth
-                  id="firstName"
-                  label="First Name"
+                  id="name"
+                  label="Nome"
                   sx={{ input: { color: 'white' } }}
                   autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
-                  sx={{ input: { color: 'white' } }}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   sx={{ input: { color: 'white' } }}
                   fullWidth
+                  required
                   id="email"
-                  label="Email Address"
+                  label="Email"
                   name="email"
                   autoComplete="email"
                 />

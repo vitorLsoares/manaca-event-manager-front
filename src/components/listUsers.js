@@ -91,7 +91,7 @@ export default function ListUsers() {
         <br />
         <br />
         <div className="container-list">
-        <h3 style={{color:"white"}}>{`Total de convidados ${users.length}`}</h3>
+        <h3 style={{ color:"white" }}>{`Total de convidados ${users.length} de ${users.filter(user => user.inviteCheck).length} confirmados`}</h3>
         <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
