@@ -6,4 +6,4 @@ type User @model @auth(rules: [{allow: public}]) {
   inviteCheck: Boolean!
   barCode: String
 }
-  
+   
