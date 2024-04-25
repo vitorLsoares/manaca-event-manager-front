@@ -41,9 +41,9 @@ export default function ListUsers() {
   const getUserForCheck = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    const name = formData.get('guestId');
+    const barcode = formData.get('guestId');
 
-    const id = users.find(i => i.name === name).id;
+    const id = users.find(i => i.barCode === barcode).id;
         
     UserService.update(id, {inviteCheck: true}).then(({ data }) => {
         setUserForCheck(data?.updateUser);
@@ -101,7 +101,7 @@ export default function ListUsers() {
             <TableRow>
                 <StyledTableCell>Id</StyledTableCell>
                 <StyledTableCell>Nome</StyledTableCell>
-                <StyledTableCell align="right">Email</StyledTableCell>
+                <StyledTableCell align="right">Barcode</StyledTableCell>
                 <StyledTableCell align="right">Posição no Evento</StyledTableCell>
             </TableRow>
             </TableHead>
@@ -112,7 +112,7 @@ export default function ListUsers() {
                   <StyledTableCell component="th" scope="row">
                       {row.name}
                   </StyledTableCell>
-                  <StyledTableCell align="right">{row.email}</StyledTableCell>
+                  <StyledTableCell align="right">{row.barCode}</StyledTableCell>
                   <StyledTableCell align="right">{row.eventPosition}</StyledTableCell>
                 </StyledTableRow>
             ))}

@@ -16,6 +16,7 @@ export default function CreateUserForm({ setParentState }) {
         name: data.get('name'),
         email: data.get('email'),
         eventPosition: data.get('eventPosition'),
+        barCode: data.get('barCode'),
         inviteCheck: false,
     };
 
@@ -53,17 +54,6 @@ export default function CreateUserForm({ setParentState }) {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  sx={{ input: { color: 'white' } }}
-                  fullWidth
-                  required
-                  id="email"
-                  label="Email"
-                  name="email"
-                  autoComplete="email"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
                   fullWidth
                   sx={{ input: { color: 'white' } }}
                   name="eventPosition"
@@ -71,6 +61,17 @@ export default function CreateUserForm({ setParentState }) {
                   type="eventPosition"
                   id="eventPosition"
                   autoComplete="eventPosition"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  sx={{ input: { color: 'white' } }}
+                  name="barCode"
+                  label="BarCode"
+                  type="barCode"
+                  id="barCode"
+                  autoComplete="barCode"
                 />
               </Grid>
             </Grid>
