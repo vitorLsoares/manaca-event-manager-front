@@ -37,10 +37,12 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 export default function ListUsers() {
   const [users, setUsers] = useState([]);
   const [userForCheck, setUserForCheck] = useState(null);
+  const [barCode, setbarCode] = useState('');
 
   const getUserForCheck = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
+    setbarCode('');
     const barcode = formData.get('guestId');
 
     const id = users.find(i => i.barCode === barcode).id;
@@ -77,6 +79,8 @@ export default function ListUsers() {
                   autoComplete="given-name"
                   name="guestId"
                   fullWidth
+                  value={barCode}
+                  onChange={(e) => setbarCode(e.target.value)}
                   id="guestId"
                   label="Id do Convidado"
                   sx={{ input: { color: 'white' }, width:'400%' }}
