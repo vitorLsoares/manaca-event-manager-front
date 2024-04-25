@@ -26,12 +26,14 @@ export declare type UserCreateFormInputValues = {
     email?: string;
     eventPosition?: string;
     inviteCheck?: boolean;
+    barCode?: string;
 };
 export declare type UserCreateFormValidationValues = {
     name?: ValidationFunction<string>;
     email?: ValidationFunction<string>;
     eventPosition?: ValidationFunction<string>;
     inviteCheck?: ValidationFunction<boolean>;
+    barCode?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type UserCreateFormOverridesProps = {
@@ -40,6 +42,7 @@ export declare type UserCreateFormOverridesProps = {
     email?: PrimitiveOverrideProps<TextFieldProps>;
     eventPosition?: PrimitiveOverrideProps<TextFieldProps>;
     inviteCheck?: PrimitiveOverrideProps<SwitchFieldProps>;
+    barCode?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type UserCreateFormProps = React.PropsWithChildren<{
     overrides?: UserCreateFormOverridesProps | undefined | null;

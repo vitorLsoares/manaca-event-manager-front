@@ -32,6 +32,7 @@ export default function UserCreateForm(props) {
     email: "",
     eventPosition: "",
     inviteCheck: false,
+    barCode: "",
   };
   const [name, setName] = React.useState(initialValues.name);
   const [email, setEmail] = React.useState(initialValues.email);
@@ -41,12 +42,14 @@ export default function UserCreateForm(props) {
   const [inviteCheck, setInviteCheck] = React.useState(
     initialValues.inviteCheck
   );
+  const [barCode, setBarCode] = React.useState(initialValues.barCode);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setName(initialValues.name);
     setEmail(initialValues.email);
     setEventPosition(initialValues.eventPosition);
     setInviteCheck(initialValues.inviteCheck);
+    setBarCode(initialValues.barCode);
     setErrors({});
   };
   const validations = {
@@ -54,6 +57,7 @@ export default function UserCreateForm(props) {
     email: [{ type: "Email" }],
     eventPosition: [],
     inviteCheck: [{ type: "Required" }],
+    barCode: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -85,6 +89,7 @@ export default function UserCreateForm(props) {
           email,
           eventPosition,
           inviteCheck,
+          barCode,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -151,6 +156,7 @@ export default function UserCreateForm(props) {
               email,
               eventPosition,
               inviteCheck,
+              barCode,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -178,6 +184,7 @@ export default function UserCreateForm(props) {
               email: value,
               eventPosition,
               inviteCheck,
+              barCode,
             };
             const result = onChange(modelFields);
             value = result?.email ?? value;
@@ -205,6 +212,7 @@ export default function UserCreateForm(props) {
               email,
               eventPosition: value,
               inviteCheck,
+              barCode,
             };
             const result = onChange(modelFields);
             value = result?.eventPosition ?? value;
@@ -232,6 +240,7 @@ export default function UserCreateForm(props) {
               email,
               eventPosition,
               inviteCheck: value,
+              barCode,
             };
             const result = onChange(modelFields);
             value = result?.inviteCheck ?? value;
@@ -246,6 +255,34 @@ export default function UserCreateForm(props) {
         hasError={errors.inviteCheck?.hasError}
         {...getOverrideProps(overrides, "inviteCheck")}
       ></SwitchField>
+      <TextField
+        label="Bar code"
+        isRequired={false}
+        isReadOnly={false}
+        value={barCode}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              name,
+              email,
+              eventPosition,
+              inviteCheck,
+              barCode: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.barCode ?? value;
+          }
+          if (errors.barCode?.hasError) {
+            runValidationTasks("barCode", value);
+          }
+          setBarCode(value);
+        }}
+        onBlur={() => runValidationTasks("barCode", barCode)}
+        errorMessage={errors.barCode?.errorMessage}
+        hasError={errors.barCode?.hasError}
+        {...getOverrideProps(overrides, "barCode")}
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}

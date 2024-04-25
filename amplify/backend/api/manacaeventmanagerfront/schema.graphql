@@ -4,5 +4,6 @@ type User @model @auth(rules: [{allow: public}]) {
   email: AWSEmail
   eventPosition: String
   inviteCheck: Boolean!
+  barCode: String
 }
- 
+  
