@@ -9,6 +9,7 @@ export const getUser = /* GraphQL */ `
       email
       eventPosition
       inviteCheck
+      barCode
       createdAt
       updatedAt
       __typename
@@ -28,6 +29,7 @@ export const listUsers = /* GraphQL */ `
         email
         eventPosition
         inviteCheck
+        barCode
         createdAt
         updatedAt
         __typename

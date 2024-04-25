@@ -1,6 +1,6 @@
 projects:
-  manacaeventmanagerfront:
-    schemaPath: amplify/backend/api/manacaeventmanagerfront/build/schema.graphql
+  Codegen Project:
+    schemaPath: schema.json
     includes:
       - src/graphql/**/*.js
     excludes:
@@ -11,8 +11,7 @@ projects:
         generatedFileName: ''
         docsFilePath: src/graphql
         region: us-east-2
-        apiId: null
+        apiId: amjij5td5rg6bksjy4ojki4ldi
+        frontend: javascript
+        framework: react
         maxDepth: 2
-extensions:
-  amplify:
-    version: 3

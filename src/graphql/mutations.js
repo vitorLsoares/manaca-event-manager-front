@@ -12,6 +12,7 @@ export const createUser = /* GraphQL */ `
       email
       eventPosition
       inviteCheck
+      barCode
       createdAt
       updatedAt
       __typename
@@ -29,6 +30,7 @@ export const updateUser = /* GraphQL */ `
       email
       eventPosition
       inviteCheck
+      barCode
       createdAt
       updatedAt
       __typename
@@ -46,6 +48,7 @@ export const deleteUser = /* GraphQL */ `
       email
       eventPosition
       inviteCheck
+      barCode
       createdAt
       updatedAt
       __typename
