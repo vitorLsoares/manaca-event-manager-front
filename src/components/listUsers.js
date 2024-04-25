@@ -41,8 +41,10 @@ export default function ListUsers() {
   const getUserForCheck = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    const id = formData.get('guestId');
-    
+    const name = formData.get('guestId');
+
+    const id = users.find(i => i.name === name).id;
+        
     UserService.update(id, {inviteCheck: true}).then(({ data }) => {
         setUserForCheck(data?.updateUser);
     });
@@ -50,8 +52,9 @@ export default function ListUsers() {
 
   useEffect(() => {
     UserService.getAll().then(({ data }) => {
+      console.log(data.listUsers)
         setUsers(data?.listUsers?.items);
-    });
+    }).catch((resp) => console.log(resp));
   }, [userForCheck]);
   
 

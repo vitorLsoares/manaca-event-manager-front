@@ -11,6 +11,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { pink, purple } from '@mui/material/colors';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import WelcomeComponent from './components/welcomeComponent';
 
 function a11yProps(index) {
   return {
@@ -82,6 +83,7 @@ function App() {
             >
               <Tab label="Criar Convidado" {...a11yProps(0)}/>
               <Tab label="Lista de Convidados" {...a11yProps(1)}/>
+              <Tab label="Bem-Vindo" {...a11yProps(2)}/>
             </Tabs>
             <CustomTabPanel value={tab} index={0} style={istMobile ? {} : { width: '250vh' }} >
               <div className={istMobile ? "main-container-mobile" : "main-container"}>
@@ -91,6 +93,9 @@ function App() {
             </CustomTabPanel>
             <CustomTabPanel value={tab} index={1} style={istMobile ? {} : { width: '250vh' }} >
               <ListUsers />
+            </CustomTabPanel>
+            <CustomTabPanel value={tab} index={2} style={istMobile ? {} : { width: '250vh' }} >
+              <WelcomeComponent />
             </CustomTabPanel>
           </Box>
         </ThemeProvider>

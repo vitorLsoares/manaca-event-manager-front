@@ -41,3 +41,41 @@
 .MuiInputLabel-root {
   color: white !important;
 }
+
+.welcome-message{ 
+  height: 110vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  background-attachment: scroll;
+  background-image: url('../public/background.png');
+  background-position: center center;
+  background-repeat: none;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+.welcome-message .intro-text {
+  padding-top: 90px;
+  padding-bottom: 50px;
+}
+
+.welcome-message .intro-lead-in {
+  margin-bottom: 25px;
+  font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 70px;
+  font-style: italic;
+  line-height: 60px;
+}
+
+.welcome-message .intro-heading {
+  margin-bottom: 25px;
+  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 70px;
+  font-weight: 700;
+  line-height: 60px;
+}
